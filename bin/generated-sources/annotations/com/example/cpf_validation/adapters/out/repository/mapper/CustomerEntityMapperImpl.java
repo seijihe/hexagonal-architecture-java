@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-10-26T21:44:33-0300",
+    date = "2026-10-27T23:16:01-0300",
     comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.46.200.v20261008-1115, environment: Java 25.0.4.1 (Eclipse Adoptium)"
 )
 @Component
@@ -23,11 +23,11 @@ public class CustomerEntityMapperImpl implements CustomerEntityMapper {
 
         CustomerEntity customerEntity = new CustomerEntity();
 
-        customerEntity.setId( customer.getId() );
-        customerEntity.setName( customer.getName() );
         customerEntity.setAddress( addressToAddressEntity( customer.getAddress() ) );
         customerEntity.setCpf( customer.getCpf() );
+        customerEntity.setId( customer.getId() );
         customerEntity.setIsValidCpf( customer.getIsValidCpf() );
+        customerEntity.setName( customer.getName() );
 
         return customerEntity;
     }
@@ -56,9 +56,9 @@ public class CustomerEntityMapperImpl implements CustomerEntityMapper {
 
         AddressEntity addressEntity = new AddressEntity();
 
-        addressEntity.setStreet( address.getStreet() );
         addressEntity.setCity( address.getCity() );
         addressEntity.setState( address.getState() );
+        addressEntity.setStreet( address.getStreet() );
 
         return addressEntity;
     }

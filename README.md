@@ -81,6 +81,18 @@ flowchart LR
     }
     ```
 
+- Flow
+
+```
+                           Without Framework   Implements OutputPort
+                       |                     |
+Controller → Interface ⇠ UseCase → Interface ⇠ Implementation
+                (In)   | UseCase     (Out)   |
+                        
+                        Implements InputPort
+
+```
+
 - Port and Adapters Names
     - /adapters
         - /in
@@ -95,6 +107,32 @@ flowchart LR
             - FindAddressByZipCode`OutputPort`.java
             - FindCustomer`OutputPort`.java
 
+</br>
+
+- Ports and Adapters Structure
+    - /adapters # Implements OutPort Contract
+        - /in | /out
+            - adapter01.java
+            - adapter02.java
+            - adapter03.java
+                - /infrastructure-component
+                    - InfrastructureComponent.java
+                    - /mapper
+                        - ValueObjectMapper.java
+                    - /value-objects
+                        - ValueObject01.java
+                        - ValueObject02.java
+    
+    - /application
+        - /ports
+            - /in | /out # Just Interfaces
+        
+        - /core
+            - /usecases
+                - UseCase01.java # Implements InPort Contract
+
+</br>
+
 - We work with an interface port by usecase (e.g `FindCustomerBuIdOutputPort`, `InsertCustomerOutputPort`) until an interface for an external environment (e.g `DatabaseOutputPort`). That is the implementation of Interface Segration Principle (ISP) of Solid. However, you don't need to create an adapter for each one. You can also implement like `public class MongoCustomerAdapter implements FindCustomerById, InsertCustomer {}`
     | Criteria | One Adapter for Multiple Ports | One Adapter per Port |
     |---|---|---|
@@ -103,5 +141,7 @@ flowchart LR
     | Coupling Between Operations | Higher | Lower |
     | Number of Classes | Fewer | More |
     | Maintainability | Depends on cohesion | Better when responsibilities are distinct |
+
+
 
 
