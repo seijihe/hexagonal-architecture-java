@@ -73,7 +73,6 @@ flowchart LR
                 - AddressEntity.java
                 - CustomerEntity.java
 
-
 - Mapper: A -> B (`Bmapper.java`)
     ```java
     @Mapper(componentModel = "spring")
@@ -81,4 +80,28 @@ flowchart LR
         B toB(A a);
     }
     ```
+
+- Port and Adapters Names
+    - /adapters
+        - /in
+            - CustomerController.java
+        - /out
+            - FindAdressByZipCode`Adapter`.java
+            - InsertCustomer`Adapter`.java
+    - /ports
+        - /in
+            - InsertCustomer`InputPort`.java
+        - /out
+            - FindAddressByZipCode`OutputPort`.java
+            - FindCustomer`OutputPort`.java
+
+- We work with an interface port by usecase (e.g `FindCustomerBuIdOutputPort`, `InsertCustomerOutputPort`) until an interface for an external environment (e.g `DatabaseOutputPort`). That is the implementation of Interface Segration Principle (ISP) of Solid. However, you don't need to create an adapter for each one. You can also implement like `public class MongoCustomerAdapter implements FindCustomerById, InsertCustomer {}`
+    | Criteria | One Adapter for Multiple Ports | One Adapter per Port |
+    |---|---|---|
+    | Interface Modularity (ISP) | High | High |
+    | Implementation Modularity | Lower | Higher |
+    | Coupling Between Operations | Higher | Lower |
+    | Number of Classes | Fewer | More |
+    | Maintainability | Depends on cohesion | Better when responsibilities are distinct |
+
 
