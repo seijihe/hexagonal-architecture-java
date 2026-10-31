@@ -137,13 +137,13 @@ Controller → Interface ⇠ UseCase → Interface ⇠ Implementation
 
 </br>
 
-    | Criteria | One Adapter for Multiple Ports | One Adapter per Port |
-    |---|---|---|
-    | Interface Modularity (ISP) | High | High |
-    | Implementation Modularity | Lower | Higher |
-    | Coupling Between Operations | Higher | Lower |
-    | Number of Classes | Fewer | More |
-    | Maintainability | Depends on cohesion | Better when responsibilities are distinct |
+| Criteria | One Adapter for Multiple Ports | One Adapter per Port |
+|---|---|---|
+| Interface Modularity (ISP) | High | High |
+| Implementation Modularity | Lower | Higher |
+| Coupling Between Operations | Higher | Lower |
+| Number of Classes | Fewer | More |
+| Maintainability | Depends on cohesion | Better when responsibilities are distinct |
 
 
 
