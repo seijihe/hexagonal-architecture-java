@@ -1,0 +1,9 @@
+spring:
+    mongodb:
+      uri: mongodh://localhost:27017/cpf-validation
+        
+
+address-api:
+    client:
+        address:
+            url: http://localhost:8082/address
