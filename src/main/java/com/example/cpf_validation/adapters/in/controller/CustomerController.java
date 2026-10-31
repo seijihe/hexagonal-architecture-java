@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class CustomerController {
 
     /*
-        At usecase classes doesn't use framework. For that reason they can be final.
-        However here, marked with annotations (like @RestController), at @Autowired
-        the bean is injected after the object creation. 
+        Usecase classes doesn't use framework. For that reason there we use @Bean to create then. 
+        In this way they can be final. However here, marked with annotations (like @RestController), 
+        at @Autowired the bean is injected after the object creation. 
     */
 
     @Autowired 
