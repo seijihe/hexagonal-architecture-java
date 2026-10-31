@@ -2,18 +2,18 @@ package com.example.cpf_validation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import com.example.cpf_validation.adapters.out.FindCustomerByIdAdapter;
 import com.example.cpf_validation.application.core.usecases.FindCustomerByIdUseCase;
-import com.example.cpf_validation.application.ports.out.FindCustomerByIdOutputPort;
+
 
 @Configuration 
 public class FindCustomerByIdConfig {
     
     @Bean 
     public FindCustomerByIdUseCase findCustomerByIdConfig(
-        FindCustomerByIdOutputPort findCustomerByIdOutputPort
+        FindCustomerByIdAdapter findCustomerByIdAdapter
     ) {
-        return new FindCustomerByIdUseCase(findCustomerByIdOutputPort);
+        return new FindCustomerByIdUseCase(findCustomerByIdAdapter);
     }
 
 }

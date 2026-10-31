@@ -2,20 +2,22 @@ package com.example.cpf_validation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import com.example.cpf_validation.adapters.out.FindAddressByZipCodeAdapter;
+import com.example.cpf_validation.adapters.out.InsertCustomerAdapter;
+import com.example.cpf_validation.adapters.out.SendCpfValidationAdapter;
 import com.example.cpf_validation.application.core.usecases.InsertCustomerUseCase;
-import com.example.cpf_validation.application.ports.out.FindAddressByZipCodeOutputPort;
-import com.example.cpf_validation.application.ports.out.InsertCustomerOutputPort;
 
 @Configuration 
 public class InsertCustomerConfig {
     
     @Bean 
     public InsertCustomerUseCase insertCustomerUseCase(
-        FindAddressByZipCodeOutputPort findAddressByZipCodeOutputPort,
-        InsertCustomerOutputPort insertCustomerOutputPort
+        FindAddressByZipCodeAdapter findAddressByZipCodeAdapter,
+        InsertCustomerAdapter insertCustomerAdapter,
+        SendCpfValidationAdapter sendCpfValidationAdapter
+        
     ) {
-        return new InsertCustomerUseCase(findAddressByZipCodeOutputPort, insertCustomerOutputPort);
+        return new InsertCustomerUseCase(findAddressByZipCodeAdapter, insertCustomerAdapter, sendCpfValidationAdapter);
     }
 
 }
