@@ -149,6 +149,11 @@ Controller → Interface ⇠ UseCase → Interface ⇠ Implementation
 | Number of Classes | Fewer | More |
 | Maintainability | Depends on cohesion | Better when responsibilities are distinct |
 
+- Example of flow read to understand the project
+```
+AdapterIn (Controllers/KafkaConsumer) → ApplicatioCoreUseCase → AdapterOut
+```
+
 
 
 
