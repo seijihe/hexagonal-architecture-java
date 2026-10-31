@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.cpf_validation.adapters.in.controller.mapper.CustomerMapper;
 import com.example.cpf_validation.adapters.in.controller.request.CustomerRequest;
 import com.example.cpf_validation.adapters.in.controller.response.CustomerResponse;
+import com.example.cpf_validation.application.core.domain.Customer;
 import com.example.cpf_validation.application.ports.in.FindCustomerByIdInputPort;
 import com.example.cpf_validation.application.ports.in.InsertCustomerInputPort;
+import com.example.cpf_validation.application.ports.in.UpdateCustomerInputPort;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController 
 @RequestMapping("/api/v1/custommers")
@@ -28,16 +29,22 @@ public class CustomerController {
     private FindCustomerByIdInputPort findCustomerByIdInputPort;
 
     @Autowired 
+    private UpdateCustomerInputPort updateCustomerInputPort; 
+
+    @Autowired 
     private CustomerMapper customerMapper;
+    
 
     public CustomerController(
         InsertCustomerInputPort insertCustomerInputPort,
         FindCustomerByIdInputPort findCustomerByIdInputPort,
-        CustomerMapper customerMapper
+        CustomerMapper customerMapper,
+        UpdateCustomerInputPort updateCustomerInputPort
     ) {
         this.insertCustomerInputPort = insertCustomerInputPort;
         this.findCustomerByIdInputPort = findCustomerByIdInputPort;
         this.customerMapper = customerMapper;
+        this.updateCustomerInputPort = updateCustomerInputPort;
     }
 
     /*
@@ -68,6 +75,13 @@ public class CustomerController {
         return ResponseEntity.ok(customerResponse);
 
     }
-    
+
+    @PutMapping("path/{id}")
+    public ResponseEntity<Void> update(@PathVariable final String id, @Valid @RequestBody CustomerRequest customerRequest) {
+        Customer customer = customerMapper.toCustomer(customerRequest);
+        customer.setId(id);
+        updateCustomerInputPort.update(customer, customerRequest.getZipCode()); // Eventhought zip code come from customer, we break in two parts thinking on inputs required to apply the method
+        return ResponseEntity.noContent().build();
+    }
     
 }

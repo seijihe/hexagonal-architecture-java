@@ -116,7 +116,7 @@ Controller → Interface ⇠ UseCase → Interface ⇠ Implementation
             - adapter02.java
             - adapter03.java
                 - /infrastructure-component
-                    - InfrastructureComponent.java
+                    - InfrastructureComponent.java # Infrastructure component that Adapter interactable 
                     - /mapper
                         - ValueObjectMapper.java
                     - /value-objects
@@ -134,6 +134,9 @@ Controller → Interface ⇠ UseCase → Interface ⇠ Implementation
 </br>
 
 - We work with an interface port by usecase (e.g `FindCustomerBuIdOutputPort`, `InsertCustomerOutputPort`) until an interface for an external environment (e.g `DatabaseOutputPort`). That is the implementation of Interface Segration Principle (ISP) of Solid. However, you don't need to create an adapter for each one. You can also implement like `public class MongoCustomerAdapter implements FindCustomerById, InsertCustomer {}`
+
+</br>
+
     | Criteria | One Adapter for Multiple Ports | One Adapter per Port |
     |---|---|---|
     | Interface Modularity (ISP) | High | High |
