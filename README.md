@@ -63,16 +63,6 @@ flowchart LR
 - When we'll analyse a project with Hexagonal Architecture
     - First verify the /ports to identify the core integrations with the external environment
 
-- We can also use directories to document the meaning of the class. Ex:
-    - /adapter
-        - /repository
-            - CustomerRepository.java
-            - /mapper
-                - CustomerEntityMapper.java
-            - /entity
-                - AddressEntity.java
-                - CustomerEntity.java
-
 - Mapper: A -> B (`Bmapper.java`)
     ```java
     @Mapper(componentModel = "spring")
@@ -92,6 +82,20 @@ Controller → Interface ⇠ UseCase → Interface ⇠ Implementation
                         Implements InputPort
 
 ```
+
+- We can also use directories to document the meaning of the class. Ex:
+    - /application/core/usecase # This term "ById" is used only at usecase
+        - DeleteCustomerByIdUseCase.java # delete()
+        - FindCustomerByIdUseCase.java # find()
+        - InsertCustomerUseCase.java # insert()
+    - /adapter
+        - /repository
+            - CustomerRepository.java
+            - `/mapper`
+                - CustomerEntityMapper.java # Eventhought it's just one file
+            - `/entity`
+                - AddressEntity.java
+                - CustomerEntity.java
 
 - Port and Adapters Names
     - /adapters

@@ -2,7 +2,6 @@ package com.example.cpf_validation.adapters.out;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.example.cpf_validation.adapters.out.repository.CustomerRepository;
 import com.example.cpf_validation.adapters.out.repository.mapper.CustomerEntityMapper;
 import com.example.cpf_validation.application.core.domain.Customer;
